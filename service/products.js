@@ -68,7 +68,7 @@ function deleteProducts(req,callback,status){
 		    }
 		}
 
-// GET method to list products
+
 function listProducts(req,callback,status) {
 
 		try {
