@@ -44,6 +44,7 @@ function updateProducts(req,callback,status){
 	  }
 }
 
+// DELETE method to delete products
 function deleteProducts(req,callback,status){
 
 		try{
@@ -67,7 +68,7 @@ function deleteProducts(req,callback,status){
 		    }
 		}
 
-
+// GET method to list products
 function listProducts(req,callback,status) {
 
 		try {
