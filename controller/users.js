@@ -1,12 +1,10 @@
-
-//const ct  = require('../routes/users')
 const service = require('../service/users')
 
 function addUsers(req,response) {
 
     try {
         service.addUsers(req.body, function(status, message, data) {
-          response.send(status, message, data, response);
+          sendResponse(status, message, data, response);
         });
     } catch (exception) {
         console.log(exception)
