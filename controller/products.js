@@ -4,7 +4,7 @@ function addProducts(req,response){
 
     try {
         service.addProducts(req.body, function(status, message, data) {
-          response.send(status, message, data, response);
+          sendResponse(status, message, data, response);
         });
     } catch (exception) {
         console.log(exception)
@@ -19,7 +19,7 @@ function updateProducts(req,response){
 
     try {
        service.updateProducts(req.body, function(status, message, data) {
-         response.send(status, message, data, response);
+         sendResponse(status, message, data, response);
        });
     } catch (exception) {
        console.log(exception)
@@ -34,7 +34,7 @@ function deleteProducts(req,response) {
 
     try {
         service.deleteProducts(req.body, function(status, message, data) {
-          response.send(status, message, data, response);
+          sendResponse(status, message, data, response);
         });
     } catch (exception) {
         console.log(exception)
@@ -49,7 +49,7 @@ function listProducts(req,response) {
 
      try {
          service.listProducts(req, function(status, message, data) {
-           response.send(status, message, data, response);
+           sendResponse(status, message, data, response);
          });
      } catch (exception) {
          console.log(exception)
