@@ -20,8 +20,38 @@ function addUsers(req,response) {
 function listUsers(req,response) {
 
     try {
-        service.listUsers(req.body, function(status, message, data) {
-          response.send(status, message, data, response);
+        service.listUsers(req, function(status, message, data) {
+          sendResponse(status, message, data, response);
+        });
+    } catch (exception) {
+        console.log(exception)
+        return response.status(400).contentType('json').send({
+            status: false,
+            error: 'exception'
+        });
+    }
+}
+
+function updateUsers(req,response) {
+
+    try {
+        service.updateUsers(req.body, function(status, message, data) {
+          sendResponse(status, message, data, response);
+        });
+    } catch (exception) {
+        console.log(exception)
+        return response.status(400).contentType('json').send({
+            status: false,
+            error: 'exception'
+        });
+    }
+}
+
+function deleteUsers(req,response) {
+
+    try {
+        service.deleteUsers(req.body, function(status, message, data) {
+          sendResponse(status, message, data, response);
         });
     } catch (exception) {
         console.log(exception)
@@ -52,5 +82,7 @@ function sendResponse(status, message, data, res) {
 
  module.exports= {
    addUsers: addUsers,
-   listUsers: listUsers
+   listUsers: listUsers,
+   updateUsers: updateUsers,
+   deleteUsers: deleteUsers
  }

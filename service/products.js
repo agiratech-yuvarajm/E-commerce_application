@@ -11,7 +11,7 @@ function addProducts(req,callback,status) {
 			    let res={}
           console.log("one item added");
           res.msg = (" An item added")
-          callback( 200,"Success");
+          callback( 200,"Success", res);
         })
   		}
 			catch(ex) {
@@ -33,7 +33,7 @@ function updateProducts(req,callback,status){
 	         }else{
 	         console.log("one item updated");
 	         res.msg = ("one item updated")
-	         callback( 200,"Success");
+	         callback( 200,"Success", res);
 	       }
 	      })
 
@@ -58,7 +58,7 @@ function deleteProducts(req,callback,status){
 		           } else {
 		           console.log("one product deleted");
 		           res.msg = ("one product deleted")
-		           callback( 200,"Success");
+		           callback( 200,"Success", res);
 		         }
 					 });
 
@@ -68,7 +68,7 @@ function deleteProducts(req,callback,status){
     }
 }
 
-
+// list method to list products
 function listProducts(req,callback) {
 
 		try {
@@ -91,7 +91,7 @@ function listProducts(req,callback) {
 		       }
 		       res.data=(products)
 					 console.log(products)
-		       callback(res);
+		       callback(200,"Success",res);
 		     }
 
 		  });
