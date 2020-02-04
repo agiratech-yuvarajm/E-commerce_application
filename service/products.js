@@ -5,12 +5,10 @@ function addProducts(req,callback,status) {
 
 		try {
 
-	      console.log(req)
 	      database.con.query('INSERT INTO product_items (product_id, brand_name, product_name, qty, price) values (("'+req.product_id+'"),("'+req.brand_name+'"),("'+req.product_name+'"),('+req.qty+'),('+req.price+'))', function(err,result) {
 
 				    let res={}
-	          console.log("one item added");
-	          res.msg = (" An item added")
+	          res.msg = ("one item added")
 	          callback( 200,"Success", res);
 	        })
 		}
@@ -32,8 +30,7 @@ function updateProducts(req,callback,status) {
 				   	if(err){
 				    		res.msg = "error"
 				    		callback(400,'error')
-				       	}else{
-				       	console.log("one item updated");
+		       	} else {
 								res.msg = ("one item updated")
 				       	callback( 200,"Success", res);
 				    }
@@ -49,7 +46,7 @@ function updateProducts(req,callback,status) {
 // DELETE method to delete products
 function deleteProducts(req,callback,status) {
 
-		try{
+		try {
 
 				let sql= "DELETE FROM product_items WHERE product_id  = ('"+req.product_id+"')";
 		    database.con.query(sql, function (err, result) {
@@ -57,11 +54,10 @@ function deleteProducts(req,callback,status) {
 		        if(err) {
 								res.msg = "error"
 								callback(400,'error');
-								} else {
-								console.log("one product deleted");
+						} else {
 								res.msg = ("one product deleted")
 								callback( 200,"Success", res);
-								}
+						}
 				});
     } catch(ex) {
 				console.log(ex)
@@ -81,7 +77,7 @@ function listProducts(req,callback) {
 								callback(400,'error');
 						} else {
 									products=[]
-									for (r in result){
+									for (r in result) {
 											pt = {}
 											pt.product_id   = result[r].product_id;
 											pt.brand_name   = result[r].brand_name;
