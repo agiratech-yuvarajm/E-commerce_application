@@ -29,22 +29,22 @@ function listUsers(req, callback) {
 						if(err) {
 								res.msg = "error"
 								callback(400,'error');
-								} else {
-								users=[]
-								for (r in result){
-										pt = {}
-										pt.user_id      = result[r].user_id;
-										pt.user_name    = result[r].user_name;
-										pt.mobile_no    = result[r].mobile_no;
-										pt.email     	 = result[r].email;
-										pt.address   	 = result[r].address;
-										pt.payment_mode = result[r].payment_mode;
-										users.push(pt)
-								}
-								res.users=(users)
-								callback(200,'success',res);
-								}
-						});
+						} else {
+						users=[]
+						for (r in result) {
+								pt = {}
+								pt.user_id      = result[r].user_id;
+								pt.user_name    = result[r].user_name;
+								pt.mobile_no    = result[r].mobile_no;
+								pt.email     	 = result[r].email;
+								pt.address   	 = result[r].address;
+								pt.payment_mode = result[r].payment_mode;
+								users.push(pt)
+						}
+						res.users=(users)
+						callback(200,'success',res);
+						}
+				});
 		}
 		catch(ex) {
 				console.log(ex)
@@ -61,14 +61,14 @@ function updateUsers(req,callback,status) {
 			  database.con.query(sql, function (err, result) {
 
 						let res={}
-				    		if(err)  {
+		    		if(err) {
 				       	res.msg = "error"
 				       	callback(400,'error')
-				        } else {
+		        } else {
 				        res.msg = ("one item updated")
 				        callback( 200,"Success", res);
-				       	}
-			      })
+		       	}
+	      })
 		}
 	  catch(ex) {
 				console.log(ex)
@@ -88,12 +88,11 @@ function deleteUsers(req,callback,status) {
 						if(err) {
 								res.msg = "error"
 								callback(400,'error');
-								} else {
+						} else {
 								res.msg = ("user deleted")
 								callback( 200,"Success", res);
-								}
-				});
-
+						}
+				})
 		}
 		catch(ex) {
 		    console.log(ex)
