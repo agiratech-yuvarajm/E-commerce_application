@@ -95,11 +95,45 @@ function listProducts(req,callback,status) {
 	  }
 }
 
+// GET method to list products details
+function listProductdetails(req,callback,status) {
+
+		try {
+
+  		  database.con.query("SELECT * from product_items", function(err,result) {
+		    		let res={}
+		     		if(err){
+				       	res.msg = "error"
+				        callback(400,'error');
+		       } else {
+				       products=[]
+				       for (r in result) {
+				         pt = {}
+				         pt.product_id   = result[r].product_id;
+				         pt.brand_name   = result[r].brand_name;
+				         pt.product_name = result[r].product_name;
+				         pt.qty     		 = result[r].qty;
+				         pt.price   		 = result[r].price;
+				         products.push(pt)
+							 }
+			       res.msg=(products)
+			       callback( 200,"Success", res);
+		     	 }
+		  	});
+		}
+		catch(ex) {
+				console.log(ex)
+				callback(400,'error');
+	  }
+}
+
+
 // Export methods
 
 module.exports = {
     addProducts: addProducts,
 		updateProducts: updateProducts,
 		deleteProducts: deleteProducts,
-		listProducts: listProducts
+		listProducts: listProducts,
+		listProductdetails: listProductdetails
 };
