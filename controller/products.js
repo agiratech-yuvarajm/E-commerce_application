@@ -1,5 +1,3 @@
-
-const ct  = require('../routes/products')
 const service = require('../service/products')
 
 function addProducts(req,response){
@@ -47,7 +45,7 @@ function deleteProducts(req,response) {
     }
  }
 
- function listProducts(req,response) {
+function listProducts(req,response) {
 
      try {
          service.listProducts(req, function(status, message, data) {
@@ -62,6 +60,23 @@ function deleteProducts(req,response) {
      }
   }
 
+  function sendResponse(status, message, data, res) {
+
+      if (status === 200) {
+
+          return res.status(status).contentType('json').send({
+              status: true,
+              message: message,
+              data: data
+          });
+      } else {
+
+          return res.status(status).contentType('json').send({
+              status: false,
+              message: message
+          });
+      }
+  }
 
  module.exports={
    addProducts: addProducts,

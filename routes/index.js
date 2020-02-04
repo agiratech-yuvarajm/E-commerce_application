@@ -1,4 +1,5 @@
 module.exports = function (app, rt) {
 
-  require('./routes/products')(app, rt)
+  require('./products')(app, rt)
+  require('./users')(app, rt)
 }
