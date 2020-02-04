@@ -6,7 +6,7 @@ const rt        = express.Router();
 app.use(bodyParser())
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const route     = require('./routes/products')(app, rt)
+const route     = require('./routes')(app, rt)
 
 // Port allocation
 app.listen(3000,function(){
