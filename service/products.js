@@ -1,16 +1,16 @@
 const database  = require('../database/model')
 
 // POST method to add products
-function addProducts(req,callback,status) {
+function addProducts(req,callback) {
 
 		try {
 
 				database.con.query('INSERT INTO product_items (product_id, brand_name, product_name, qty, price)   values (("'+req.product_id+'"),("'+req.brand_name+'"),("'+req.product_name+'"),("'+req.qty+'"),("'+req.price+'"))',function(err,result) {
 
-						let res={}
-          	res.msg = (" An item added")
-          	callback( 200,"Success", res);
-        })
+						let response = {}
+		      	response.msg = (" An item added")
+		      	callback( 200,"Success", response);
+				})
 		}
 		catch(ex) {
 				console.log(ex)
@@ -19,18 +19,19 @@ function addProducts(req,callback,status) {
 }
 
 // PUT method Update products
-function updateProducts(req,callback,status){
+function updateProducts(req, callback) {
+
 		try {
 
-				let sql="UPDATE product_items SET brand_name = ('"+req.brand_name+ "') WHERE product_id=('"+req.product_id+"') ";
+				let sql="UPDATE product_items SET brand_name = '"+req.brand_name+ "' WHERE product_id='"+req.product_id+"' ";
 		  	database.con.query(sql, function (err, result) {
-						let res={}
+						let resonse = {}
 						if(err) {
-								res.msg = "error"
+								response.msg = "error"
 								callback(400,'error')
 						} else {
-								res.msg = ("one item updated")
-								callback( 200,"Success", res);
+								response.msg = ("one item updated")
+								callback( 200,"Success", response);
 						}
 				})
 		}
@@ -41,19 +42,19 @@ function updateProducts(req,callback,status){
 }
 
 // DELETE method to delete products
-function deleteProducts(req,callback,status){
+function deleteProducts(req, callback) {
 
 		try{
 
 		  	let sql= "DELETE FROM product_items WHERE product_id  = ('"+req.product_id+"')";
 		    database.con.query(sql, function (err, result) {
-		    		var res={}
+		    		let response = {}
 						if(err){
-								res.msg = "error"
+								response.msg = "error"
 								callback(400,'error');
 						}  else {
-								res.msg = ("one product deleted")
-								callback( 200,"Success", res);
+								response.msg = ("one product deleted")
+								callback( 200,"Success", response);
 						}
 				});
 		}
