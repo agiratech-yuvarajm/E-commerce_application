@@ -27,3 +27,42 @@ function listProducts(callback) {
                 console.log(ex)
                 callback(400,'error');}
 }
+
+
+
+
+
+
+function listProducts(req,callback) {
+
+		try {
+
+  		  database.con.query("SELECT * from users", function(err,result) {
+		    let res={}
+		     if(err){
+		       res.msg = "error"
+		        callback(400,'error');
+		       } else {
+		       users=[]
+		       for (r in result){
+		         pt = {}
+		         pt.user_id      = result[r].user_id;
+		         pt.user_name    = result[r].user_name;
+		         pt.mobile_no    = result[r].mobile_no;
+		         pt.email        = result[r].email;
+		         pt.address      = result[r].address;
+						 pt.payment_mode = result[r].payment_mode;
+		         users.push(pt)
+		       }
+		       res.data=(users)
+					 console.log(users)
+		       callback(res);
+		     }
+
+		  });
+		}
+		catch(ex) {
+				console.log(ex)
+				callback(400,'error');
+		  }
+		}
