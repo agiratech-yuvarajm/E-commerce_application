@@ -8,6 +8,8 @@ module.exports = function (app, rt) {
     .delete(controller.deleteProducts)
     .get(controller.listProducts)
 
+  rt.route('/v1/products/product_details')
+    .get(controller.listProductdetails)
 
 
   app.use('/api', rt)
