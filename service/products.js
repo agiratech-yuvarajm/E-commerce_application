@@ -7,14 +7,14 @@ function addProducts(req,callback) {
 
 				database.con.query('INSERT INTO product_items (product_id, brand_name, product_name, qty, price)   values (("'+req.product_id+'"),("'+req.brand_name+'"),("'+req.product_name+'"),("'+req.qty+'"),("'+req.price+'"))',function(err,result) {
 
-						let response = {}
-		      	response.msg = (" An item added")
-		      	callback( 200,"Success", response);
+					let response = {}
+					response.msg = (" An item added")
+					callback( 200,"Success", response);
 				})
 		}
 		catch(ex) {
-				console.log(ex)
-				callback(400,'error');
+			console.log(ex)
+			callback(400,'error');
 		}
 }
 
@@ -24,14 +24,14 @@ function updateProducts(req, callback) {
 		try {
 
 				let sql="UPDATE product_items SET brand_name = '"+req.brand_name+ "' WHERE product_id='"+req.product_id+"' ";
-		  	database.con.query(sql, function (err, result) {
+		  		database.con.query(sql, function (err, result) {
 						let resonse = {}
 						if(err) {
-								response.msg = "error"
-								callback(400,'error')
+							response.msg = "error"
+							callback(400,'error')
 						} else {
-								response.msg = ("one item updated")
-								callback( 200,"Success", response);
+							response.msg = ("one item updated")
+							callback( 200,"Success", response);
 						}
 				})
 		}
@@ -50,75 +50,75 @@ function deleteProducts(req, callback) {
 		    database.con.query(sql, function (err, result) {
 		    		let response = {}
 						if(err){
-								response.msg = "error"
-								callback(400,'error');
+							response.msg = "error"
+							callback(400,'error');
 						}  else {
-								response.msg = ("one product deleted")
-								callback( 200,"Success", response);
+							response.msg = ("one product deleted")
+							callback( 200,"Success", response);
 						}
 				});
 		}
 		catch(ex) {
-				console.log(ex)
-				callback(400,'error');
+			console.log(ex)
+			callback(400,'error');
 		}
 }
 
 // GET method to list products
-function listProducts(req,callback,status) {
+function listProducts(req,callback) {
 
 		try {
 
-  		  database.con.query("SELECT * from product_items", function(err,result) {
-		    		let res={}
+			database.con.query("SELECT * from product_items", function(err,result) {
+				let response={}
 		     		if(err){
-				       	res.msg = "error"
+				       	response.msg = "error"
 				        callback(400,'error');
-		       } else {
-				       products=[]
-				       for (r in result) {
-				         pt = {}
-				         pt.product_id   = result[r].product_id;
-				         pt.brand_name   = result[r].brand_name;
-				         pt.product_name = result[r].product_name;
-				         pt.qty     		 = result[r].qty;
-				         pt.price   		 = result[r].price;
-				         products.push(pt)
-							 }
-			       res.msg=(products)
-			       callback( 200,"Success", res);
-		     	 }
+		       		} else {
+				       	products=[]
+				       	for (r in result) {
+							pt = {}
+							pt.product_id   = result[r].product_id;
+							pt.brand_name   = result[r].brand_name;
+							pt.product_name = result[r].product_name;
+							pt.qty     		 = result[r].qty;
+							pt.price   		 = result[r].price;
+							products.push(pt)
+						}
+			       	response.msg=(products)
+			       	callback( 200,"Success", response);
+					}
 		  	});
 		}
 		catch(ex) {
-				console.log(ex)
-				callback(400,'error');
+			console.log(ex)
+			callback(400,'error');
 	  }
 }
 
 // GET method to list products details
-function listProductdetails(req,callback,status) {
+function listProductdetails(req,callback) {
 
 		try {
 
   		  database.con.query("SELECT * from product_items", function(err,result) {
-		    		let res={}
+		    		let response={}
 		     		if(err){
-				       	res.msg = "error"
+				       	response.msg = "error"
 				        callback(400,'error');
-		       } else {
-				       products=[]
-				       for (r in result) {
-				         pt = {}
-				         pt.product_id   = result[r].product_id;
-				         pt.brand_name   = result[r].brand_name;
-				         pt.product_name = result[r].product_name;
-				         pt.qty     		 = result[r].qty;
-				         pt.price   		 = result[r].price;
-				         products.push(pt)
-							 }
-			       res.msg=(products)
-			       callback( 200,"Success", res);
+					} else {
+						products=[]
+				       	for ( r in result ) {
+							pt = {}
+							pt.product_id   = result[r].product_id;
+							pt.brand_name   = result[r].brand_name;
+				         	pt.product_name = result[r].product_name;
+				         	pt.qty     		 = result[r].qty;
+				         	pt.price   		 = result[r].price;
+				         	products.push(pt)
+						}
+					response.msg=(products)
+			       	callback( 200,"Success", response);
 		     	 }
 		  	});
 		}
@@ -130,9 +130,8 @@ function listProductdetails(req,callback,status) {
 
 
 // Export methods
-
 module.exports = {
-    addProducts: addProducts,
+		addProducts: addProducts,
 		updateProducts: updateProducts,
 		deleteProducts: deleteProducts,
 		listProducts: listProducts,
