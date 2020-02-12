@@ -22,7 +22,7 @@ function addProducts(req,callback) {
 						}
 				})
 		}
-		catch(ex) {console.log(response.msg)
+		catch(ex) {
 				console.log(ex)
 				callback(400,'error');
 		}
