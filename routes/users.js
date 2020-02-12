@@ -2,7 +2,7 @@ const controller = require('../controller/users')
 
 module.exports = function (app, rt) {
 
-  rt.route('/v1/users')
+  rt.route('/')
     .post(controller.addUsers)
     .get(controller.listUsers)
     .put(controller.updateUsers)
@@ -10,7 +10,7 @@ module.exports = function (app, rt) {
 
 
 
-  app.use('/api', rt)
+  app.use('/api/v1/users', rt)
 
 
 }
