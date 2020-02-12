@@ -13,11 +13,10 @@ function addProducts(req,callback) {
 				database.con.query('INSERT INTO product_items (product_id, brand_name, product_name, qty, price)   values (("'+req.product_id+'"),("'+req.brand_name+'"),("'+req.product_name+'"),("'+req.qty+'"),("'+req.price+'"))',function(err,result) {
 						console.log("hi")
 						let response = {}
-						// if(err) {
-						// 		response.msg = "error"
-						// 		callback(400,'error')
-						// } else
-						 {
+						if(err) {
+								response.msg = "error"
+								callback(400,'error')
+						} else {
 								response.msg = ("item added")
 								callback( 200,"Success", response);
 						}
@@ -34,16 +33,17 @@ function updateProducts(req, callback) {
 
 		try {
 
-				if (!req.brand_name) throw new Error('brand_name missing')
+				if (!req.product_brand_name) throw new Error('brand_name missing')
 				if (!req.product_id) throw new Error('product_id missing')
 
-				let sql="UPDATE product_items SET brand_name = '"+req.brand_name+ "' WHERE product_id='"+req.product_id+"' ";
-		  		database.con.query(sql, function (err, result) {
+				let sql="UPDATE product_items SET product_brand_name = '"+req.product_brand_name+ "' WHERE product_id='"+req.product_id+"' ";
+
+					database.con.query(sql, function (err, result) {
 						let response = {}
 						if(err) {
 							response.msg = "error"
 							callback(400,'error')
-						} else {
+						} else {console.log("y")
 							response.msg = ("one item updated")
 							callback( 200,"Success", response);
 						}
@@ -127,8 +127,8 @@ function listProductdetails(req,callback) {
 							pt.product_id   = result[r].product_id;
 							pt.brand_name   = result[r].brand_name;
 		         	pt.product_name = result[r].product_name;
-		         	pt.qty     		 = result[r].qty;
-		         	pt.price   		 = result[r].price;
+		         	pt.qty     		  = result[r].qty;
+		         	pt.price   		  = result[r].price;
 		         	products.push(pt)
 						}
 					response.msg=(products)
