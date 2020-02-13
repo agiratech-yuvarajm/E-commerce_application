@@ -5,17 +5,17 @@ function addProducts(req,callback) {
 
 		try {
 				if (!req.product_id) throw new Error('product_id missing')
-				if (!req.brand_name) throw new Error('brand_name missing')
+				if (!req.product_brand_name) throw new Error('product_brand_name missing')
 				if (!req.product_id) throw new Error('product_name missing')
-				if (!req.product_id) throw new Error('qty missing')
+				if (!req.qty) throw new Error('qty missing')
 				if (!req.product_id) throw new Error('price missing')
-				console.log("test")
-				database.con.query('INSERT INTO product_items (product_id, brand_name, product_name, qty, price)   values (("'+req.product_id+'"),("'+req.brand_name+'"),("'+req.product_name+'"),("'+req.qty+'"),("'+req.price+'"))',function(err,result) {
-						console.log("hi")
+
+				database.con.query('INSERT INTO product_items (category_id, category_name, product_id, product_brand_name, product_name, qty, price, warranty, seller_name, rating) values (("'+req.category_id+'"),("'+req.category_name+'"),("'+req.product_id+'"),("'+req.product_brand_name+'"),("'+req.product_name+'"),("'+req.qty+'"),("'+req.price+'"),("'+req.warranty+'"),("'+req.seller_name+'"),("'+req.rating+'"))',function(err ,result) {
 						let response = {}
 						if(err) {
-								response.msg = "error"
-								callback(400,'error')
+								response.msg = ("err")
+								console.log(err)
+								callback( 400,"error");
 						} else {
 								response.msg = ("item added")
 								callback( 200,"Success", response);
@@ -43,7 +43,7 @@ function updateProducts(req, callback) {
 						if(err) {
 							response.msg = "error"
 							callback(400,'error')
-						} else {console.log("y")
+						} else {
 							response.msg = ("one item updated")
 							callback( 200,"Success", response);
 						}
