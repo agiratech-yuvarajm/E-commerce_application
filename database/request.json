@@ -1,0 +1,42 @@
+POST
+{
+"category_id":1,
+"category_name":"electronics",
+"product_id":1,
+"product_brand_name":"sony",
+"product_name": "TV",
+"qty":5,
+"price": "Rs.50000",
+"warranty":"5 years",
+"seller_name": "abc",
+"rating": 5
+}
+
+PUT
+
+DELETE
+{
+"product_id":1,
+}
+
+{
+"product_brand_name": "apple",
+"product_id": 2
+}
+
+
+var cat_id= document.getElementById('cat_id').value;
+var cat_name= document.getElementById('cat_name').value;
+var prodid= document.getElementById('prodid').value;
+var prodname= document.getElementById('prodname').value;
+var qtys= document.getElementById('qtys').value;
+var prod_price= document.getElementById('prod_price').value;
+var prod_warranty= document.getElementById('prod_warranty').value;
+var prod_sellername= document.getElementById('prod_sellername').value;
+var prod_rating= document.getElementById('prod_rating').value;
+
+
+
+{
+  "category_id":"cat_id","category_name":"cat_name",
+}
