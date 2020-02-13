@@ -4,6 +4,7 @@ const database  = require('../database/model')
 function addProducts(req,callback) {
 
 		try {
+				if (!req.category_id) throw new Error('category_id missing')
 				if (!req.product_id) throw new Error('product_id missing')
 				if (!req.product_brand_name) throw new Error('product_brand_name missing')
 				if (!req.product_id) throw new Error('product_name missing')
