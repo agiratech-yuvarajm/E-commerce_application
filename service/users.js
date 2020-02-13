@@ -6,8 +6,7 @@ function addUsers(req,callback,status) {
 		try {
 
 	      database.con.query('INSERT INTO users (user_id, user_name, password, mobile_no, email, address, payment_mode) values (("'+req.user_id+'"),("'+req.user_name+'"),("'+req.password+'"),("'+req.mobile_no+'"),("'+req.email+'"),("'+req.address+'"),("'+req.payment_mode+'"))', function(err,result) {
-
-				    let res={}
+				    let res = {}
 	          res.msg = (" one item added")
 	          callback( 200,"Success",res);
         })
@@ -25,23 +24,23 @@ function listUsers(req, callback) {
 
 			  database.con.query("SELECT * from users", function(err,result) {
 
-		    		let res={}
+		    		let res = {}
 						if(err) {
 								res.msg = "error"
 								callback(400,'error');
 						} else {
-						users=[]
+						users = []
 						for (r in result) {
 								pt = {}
 								pt.user_id      = result[r].user_id;
 								pt.user_name    = result[r].user_name;
 								pt.mobile_no    = result[r].mobile_no;
-								pt.email     	 = result[r].email;
-								pt.address   	 = result[r].address;
+								pt.email     	  = result[r].email;
+								pt.address   	  = result[r].address;
 								pt.payment_mode = result[r].payment_mode;
 								users.push(pt)
 						}
-						res.users=(users)
+						res.users = (users)
 						callback(200,'success',res);
 						}
 				});
@@ -56,6 +55,8 @@ function listUsers(req, callback) {
 function updateUsers(req,callback,status) {
 
 		try {
+			if (!req.address) throw new Error('address missing')
+			if (!req.user_id) throw new Error('user_id missing')
 
 				let sql= "UPDATE users SET address = ('"+req.address+ "') WHERE user_id=('"+req.user_id+"') ";
 			  database.con.query(sql, function (err, result) {
@@ -80,6 +81,7 @@ function updateUsers(req,callback,status) {
 function deleteUsers(req,callback,status) {
 
 		try {
+			if (!req.user_id) throw new Error('user_id missing')
 
 				let sql= "DELETE FROM users WHERE user_id  = ('"+req.user_id+"')";
 		    database.con.query(sql, function (err, result) {
